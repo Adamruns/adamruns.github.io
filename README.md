@@ -5,4 +5,4 @@ Portfolio
 ## I am a current college student looking for experience
 
 This repo contains my portfolio site hosted with github pages.
-The domain name for the site is adamruns.com
+The domain name for the site is adam-runs.com
