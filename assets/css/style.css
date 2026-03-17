@@ -294,6 +294,7 @@ p:last-child {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  z-index: 110;
 }
 
 .theme-toggle {
@@ -793,12 +794,14 @@ p:last-child {
     z-index: 105;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.3s ease, visibility 0.3s ease;
   }
 
   .nav-links--open {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-links a {
