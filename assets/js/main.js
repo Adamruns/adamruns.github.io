@@ -63,13 +63,13 @@ function initLightbox() {
 
   if (!grid) return;
 
-  var lightbox = document.createElement("div");
+  const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
   lightbox.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img src="" alt="">';
   document.body.appendChild(lightbox);
 
-  var lightboxImage = lightbox.querySelector("img");
-  var closeButton = lightbox.querySelector(".lightbox-close");
+  const lightboxImage = lightbox.querySelector("img");
+  const closeButton = lightbox.querySelector(".lightbox-close");
 
   function openLightbox(source, altText) {
     lightboxImage.src = source;
