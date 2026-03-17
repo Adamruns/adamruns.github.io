@@ -7,6 +7,9 @@
   --color-accent-hover: #a85d3c;
   --color-border: #e0d8d0;
   --color-white: #ffffff;
+  --color-button-text: #ffffff;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-strong: rgba(0, 0, 0, 0.12);
 
   --font-heading: 'DM Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -29,6 +32,10 @@
   --color-text-muted: #9a9590;
   --color-border: #333333;
   --color-white: #1e1e1e;
+  --color-accent-hover: #d4825e;
+  --color-button-text: #1e1e1e;
+  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-shadow-strong: rgba(0, 0, 0, 0.3);
 }
 
 *,
@@ -352,7 +359,7 @@ p:last-child {
   justify-content: center;
   padding: 0.75rem 1.5rem;
   background-color: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-button-text);
   border-radius: 8px;
   font-weight: 600;
   font-size: 0.95rem;
@@ -362,7 +369,7 @@ p:last-child {
 
 .button-primary:hover {
   background-color: var(--color-accent-hover);
-  color: var(--color-white);
+  color: var(--color-button-text);
   text-decoration: none;
   transform: translateY(-1px);
 }
@@ -384,7 +391,7 @@ p:last-child {
 
 .button-outline:hover {
   background-color: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-button-text);
   text-decoration: none;
   transform: translateY(-1px);
 }
@@ -437,7 +444,7 @@ p:last-child {
   height: 280px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 30px var(--color-shadow-strong);
 }
 
 .hero-content {
@@ -590,7 +597,7 @@ p:last-child {
 
 .project-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px var(--color-shadow);
 }
 
 .project-card-body {
@@ -690,7 +697,7 @@ p:last-child {
 
 .photo-grid img:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px var(--color-shadow);
 }
 
 .lightbox {
