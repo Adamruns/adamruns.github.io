@@ -179,6 +179,11 @@ p:last-child {
   border-radius: 2px;
 }
 
+.contact h1::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .nav {
   position: fixed;
   top: 0;
