@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#090d18" />
+    <title>Do AI agents benefit from writing tests? — Adam Smith</title>
+    <meta
+      name="description"
+      content="A subscription-only GPT-6 Astra experiment: do new regression tests help agents fix bugs, and do those tests catch future faults? Methods, measured results, and downloadable data."
+    />
+    <link rel="canonical" href="https://adamruns.com/unit-testing.html" />
+    <meta
+      property="og:title"
+      content="Do AI agents benefit from writing tests?"
+    />
+    <meta
+      property="og:description"
+      content="80 GPT-6 Astra runs: both testing policies passed 28/40 attempts. Generated suites also detected regressions. Methods, chart, raw data, and limitations."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://adamruns.com/unit-testing.html" />
+    <meta
+      property="og:image"
+      content="https://adamruns.com/assets/experiments/unit-testing/results-chart.png"
+    />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="900" />
+    <meta
+      property="og:image:alt"
+      content="Measured bug-fix and regression-test outcomes from Adam Smith’s GPT-6 Astra pilot. See the page for exact counts and limitations."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@tokensmax" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/style.css?v=7" />
+    <link rel="stylesheet" href="assets/css/afterglow.css?v=7" />
+    <link rel="stylesheet" href="assets/css/experiment.css?v=1" />
+    <script src="assets/js/ambient.js?v=7" defer></script>
+    <script src="assets/js/main.js?v=7" defer></script>
+    <script src="assets/js/experiment.js?v=1" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="wordmark" href="index.html" aria-label="Adam Smith, home"
+        >adam<span class="logo-star" aria-hidden="true">✳</span></a
+      >
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="index.html#work">Work</a
+        ><a href="unit-testing.html" aria-current="page">Research</a
+        ><a href="index.html#about">About</a
+        ><a href="index.html#offscreen">Off-screen</a>
+      </nav>
+      <a class="header-contact" href="index.html#contact"
+        >Let’s talk <span aria-hidden="true">↗</span></a
+      >
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation"
+      >
+        <span></span><span></span>
+      </button>
+      <nav
+        id="mobile-menu"
+        class="mobile-menu"
+        aria-label="Mobile navigation"
+        hidden
+      >
+        <a href="index.html#work">Selected work <span>01</span></a
+        ><a href="index.html#about">A little about me <span>02</span></a
+        ><a href="index.html#offscreen">Off-screen <span>03</span></a
+        ><a href="index.html#contact">Let’s talk <span>↗</span></a
+        ><a href="unit-testing.html" aria-current="page"
+          >Research <span>↗</span></a
+        ><a href="assets/adam_smith_resume.pdf">View résumé <span>↓</span></a>
+      </nav>
+    </header>
+    <main id="main" class="experiment section-wrap">
+      <section class="experiment-hero" aria-labelledby="experiment-title">
+        <p class="eyebrow section-number">FIELD NOTES / EXPERIMENT 001</p>
+        <h1 id="experiment-title">
+          Do AI agents<br />still need to<br /><em>write tests?</em>
+        </h1>
+        <p class="experiment-deck">
+          A correct fix is one outcome. A useful regression test is another. I
+          measured both.
+        </p>
+        <div class="experiment-meta">
+          <span>Adam Smith</span><span>GPT-6 Astra · medium reasoning</span
+          ><span>ChatGPT subscription</span>
+        </div>
+        <div class="experiment-status" role="status">
+          <span class="status-dot"></span
+          ><span id="run-status"
+            >Pilot complete · 80 evaluated attempts · 20 issues</span
+          >
+        </div>
+      </section>
+      <nav class="experiment-nav" aria-label="Article sections">
+        <a href="#results">Results ↓</a><a href="#method">The experiment ↓</a
+        ><a href="#data">Raw data ↓</a
+        ><a href="#limits">What this can’t tell us ↓</a>
+      </nav>
+      <section
+        id="results"
+        class="experiment-section"
+        aria-labelledby="results-title"
+      >
+        <p class="eyebrow section-number">01 / THE RESULTS</p>
+        <h2 id="results-title">Let the <em>data talk.</em></h2>
+        <p id="result-takeaway" class="section-lead">
+          Both testing policies passed every acceptance check in 28/40 attempts.
+          All 29 generated suites that passed on the reference fix detected the
+          original bug. This is a selected SymPy pilot, not a verdict on all
+          unit testing.
+        </p>
+        <div id="result-content" hidden>
+          <div class="metric-grid">
+            <div>
+              <span>Runs evaluated</span><strong id="metric-runs">—</strong
+              ><small id="metric-coverage"></small>
+            </div>
+            <div>
+              <span>Effect of writing a test</span
+              ><strong id="metric-delta">—</strong
+              ><small>Difference in full acceptance passes</small>
+            </div>
+            <div>
+              <span>Suites detecting the original bug</span
+              ><strong id="metric-regressions">—</strong
+              ><small>By generated suites valid on the reference fix</small>
+            </div>
+          </div>
+          <figure class="result-figure">
+            <img
+              id="result-chart"
+              src="assets/experiments/unit-testing/results-chart.png"
+              alt="Pilot results chart; all values are also provided in the results table below."
+              width="1600"
+              height="900"
+            />
+            <figcaption id="chart-caption">
+              A single-model, single-repository pilot. Counts matter more than
+              headline percentages.
+            </figcaption>
+          </figure>
+          <div
+            class="table-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Aggregate experiment results"
+          >
+            <table>
+              <caption>
+                Experiment A · Immediate bug fixes
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Measure</th>
+                  <th scope="col">No new tests</th>
+                  <th scope="col">Write a test</th>
+                </tr>
+              </thead>
+              <tbody id="aggregate-body"></tbody>
+            </table>
+          </div>
+          <div class="result-note" id="regression-detail"></div>
+          <p id="statistical-note" class="fine-print"></p>
+          <aside class="result-note">
+            <strong>What I take from this pilot.</strong>
+            <p>
+              The agent solved the same 14 issues in all four attempts per
+              issue. Writing tests showed no immediate fix-rate gain in this
+              sample and took 55.8 seconds per run on average, versus 46.3
+              seconds without new tests—about 20% longer. The generated suites
+              did detect original bugs and deliberately introduced faults. That
+              is evidence of regression-detection value on these cases, with
+              long-term maintenance value still unmeasured.
+            </p>
+          </aside>
+          <aside class="case-finding">
+            <p class="eyebrow section-number">AN UNEXPECTED FINDING</p>
+            <h3>A test caught a bug in the benchmark’s own fix.</h3>
+            <p>
+              For SymPy #23262, an AI-written test checks an empty tuple. The
+              reference patch generates <code>return (,)</code>, which is
+              invalid Python. The original code and the agent’s patch both pass
+              that case.
+            </p>
+            <p>
+              The full suite remains outside the reference-valid score under the
+              frozen rules. Failing on the reference fix does not, by itself,
+              prove a test is wrong.
+              <a href="assets/experiments/unit-testing/findings.json"
+                >Read the recorded evidence ↗</a
+              >
+            </p>
+          </aside>
+          <div class="experiment-actions">
+            <a
+              class="button button-accent"
+              href="assets/experiments/unit-testing/results-chart.png"
+              download
+              >Download chart PNG <span aria-hidden="true">↓</span></a
+            ><a
+              class="text-link"
+              href="assets/experiments/unit-testing/tweet.txt"
+              download
+              >Download tweet draft ↓</a
+            >
+          </div>
+          <p class="fine-print">
+            The draft and chart describe only the measured pilot. Nothing is
+            posted automatically.
+          </p>
+        </div>
+        <div id="empty-results" class="result-note" hidden>
+          20 validated historical issues × 2 policies × 2 repetitions =
+          <strong>80 agent runs</strong>. Environment checks are separate from
+          scored model attempts.
+        </div>
+        <noscript
+          ><p>
+            JavaScript displays the measured results table. You can also read
+            the
+            <a href="assets/experiments/unit-testing/results.json"
+              >results JSON</a
+            >
+            and
+            <a href="assets/experiments/unit-testing/results-chart.png"
+              >chart</a
+            >
+            directly.
+          </p></noscript
+        >
+      </section>
+      <section
+        id="method"
+        class="experiment-section"
+        aria-labelledby="method-title"
+      >
+        <p class="eyebrow section-number">02 / THE EXPERIMENT</p>
+        <h2 id="method-title">
+          Same bugs.<br /><em>Different instructions.</em>
+        </h2>
+        <p class="section-lead">
+          I adapted the question from
+          <a href="https://arxiv.org/html/2602.07900v2"
+            >Rethinking the Value of Agent-Generated Tests</a
+          >: does requiring an agent to write a test improve its patch, or
+          mainly change its process?
+        </p>
+        <div class="condition-grid">
+          <article>
+            <span class="condition-tag">A / NO NEW TESTS</span>
+            <h3>Fix the issue.</h3>
+            <p>
+              Inspect the repository, change production code, and run existing
+              tests. Do not add new tests, assertions, or ad-hoc test scripts.
+            </p>
+          </article>
+          <article>
+            <span class="condition-tag">B / WRITE TESTS</span>
+            <h3>Fix it. Add a regression test.</h3>
+            <p>
+              The same issue and tools, plus a new behavioral test that the
+              agent must execute and leave behind. Existing tests remain
+              available.
+            </p>
+          </article>
+        </div>
+        <ol class="method-steps">
+          <li>
+            <strong>Validate the questions first.</strong>
+            <p>
+              Select 20 SymPy issues from SWE-bench Verified after confirming
+              that withheld acceptance tests expose the original bug and pass
+              with the reference fix. Preserve exclusions.
+            </p>
+          </li>
+          <li>
+            <strong>Keep the comparison paired.</strong>
+            <p>
+              Use fresh repository copies and two repetitions per policy, in a
+              fixed shuffled order. Hold GPT-6 Astra, medium reasoning, Codex
+              CLI, tools, and the five-minute time cap constant.
+            </p>
+          </li>
+          <li>
+            <strong>Score the production patch.</strong>
+            <p>
+              Apply it to a clean copy, then run the official issue’s withheld
+              FAIL_TO_PASS and PASS_TO_PASS checks. Generated tests cannot
+              change the grader. Skips and collection errors do not count as
+              passes.
+            </p>
+          </li>
+          <li>
+            <strong>Put the new tests to work again.</strong>
+            <p>
+              Run each generated suite against the agent’s patch, the reference
+              fix, the original bug, and prevalidated mutations of the reference
+              fix. Separate useful detection from invalid or failing test
+              suites.
+            </p>
+          </li>
+        </ol>
+        <aside class="result-note">
+          <strong>Subscription usage, measured honestly.</strong>
+          <p>
+            Inference uses the local CLI’s ChatGPT login. Input, cached input,
+            output tokens, and elapsed time are recorded. Subscription capacity
+            is consumed; these are not metered API dollar costs.
+          </p>
+        </aside>
+      </section>
+      <section
+        id="data"
+        class="experiment-section"
+        aria-labelledby="data-title"
+      >
+        <p class="eyebrow section-number">03 / SHOW YOUR WORK</p>
+        <h2 id="data-title">Open by <em>design.</em></h2>
+        <p class="section-lead">
+          Inspect the protocol, exact issues, task-level outcomes, and
+          reproducible runner. Authentication files and unrelated private
+          context are excluded from exports.
+        </p>
+        <div class="experiment-actions">
+          <a class="text-link" href="experiments/unit-testing/protocol.json"
+            >Read protocol ↗</a
+          ><a
+            class="text-link"
+            href="assets/experiments/unit-testing/results.json"
+            >Results JSON ↗</a
+          ><a
+            class="text-link"
+            href="assets/experiments/unit-testing/runs.csv"
+            download
+            >Run-level CSV ↓</a
+          ><a
+            class="text-link"
+            id="bundle-link"
+            href="assets/experiments/unit-testing/reproducibility.zip"
+            download
+            hidden
+            >Reproducibility bundle ↓</a
+          >
+        </div>
+        <details class="task-details">
+          <summary>Explore individual attempts</summary>
+          <div
+            class="table-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Individual experiment attempts"
+          >
+            <table>
+              <caption id="attempt-caption">
+                Completed and interrupted attempts
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Issue</th>
+                  <th scope="col">Policy</th>
+                  <th scope="col">Repeat</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Time</th>
+                </tr>
+              </thead>
+              <tbody id="attempt-body">
+                <tr>
+                  <td colspan="5">No attempts recorded yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <p class="fine-print" id="provenance"></p>
+      </section>
+      <section
+        id="limits"
+        class="experiment-section"
+        aria-labelledby="limits-title"
+      >
+        <p class="eyebrow section-number">04 / READ THIS BEFORE SHARING</p>
+        <h2 id="limits-title">A pilot.<br /><em>Not a verdict.</em></h2>
+        <div class="limits-copy">
+          <p>
+            Twenty selected historical issues from one Python repository cannot
+            tell us whether unit testing is worth it for every team. Public
+            benchmarks may appear in model training data. Acceptance tests can
+            also demand behavior beyond an issue’s example: the Unicode-printing
+            case includes Unicode digits as well as Greek letters. Passing this
+            benchmark is an operational measure, not proof that every issue is
+            perfectly specified. Two runs of the same issue do not become two
+            independent projects.
+          </p>
+          <p>
+            This uses Codex CLI and local macOS/Python grading, not the paper’s
+            mini-SWE-agent and official Docker environment. The five-minute cap
+            is part of the treatment: time spent writing tests comes from the
+            same budget. Results include policy violations and interrupted
+            attempts explicitly.
+          </p>
+          <p>
+            Mutation scores cover only the selected, detectable faults. They do
+            not measure production incidents avoided or long-term maintenance
+            costs. The no-new-tests condition still has existing tests; its
+            future regression protection is not zero.
+          </p>
+          <p>
+            A small or uncertain difference does not prove equivalence. I would
+            need more varied tasks, independent review, and a prespecified
+            practical margin before making that claim.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap">
+      <a class="wordmark" href="index.html" aria-label="Adam Smith, home"
+        >adam<span class="logo-star" aria-hidden="true">✳</span></a
+      >
+      <p>© <span data-year>2026</span> Adam Smith</p>
+      <a href="#" class="back-top">BACK TO TOP ↑</a>
+    </footer>
+  </body>
+</html>

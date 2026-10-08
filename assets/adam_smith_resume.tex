@@ -1,0 +1,60 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=0.58in,top=0.46in,bottom=0.46in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,enumitem,titlesec,xcolor,hyperref}
+\definecolor{accent}{HTML}{3E582C}
+\definecolor{muted}{HTML}{505850}
+\hypersetup{colorlinks=true,urlcolor=accent,pdftitle={Adam Smith - Software Engineer},pdfauthor={Adam Smith}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\titleformat{\section}{\small\bfseries\color{accent}}{}{0em}{}[\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=3pt,parsep=0pt}
+\newcommand{\role}[4]{\vspace{5pt}\textbf{#1}\hfill{\small #2}\\\textit{#3}\hfill{\small\color{muted}#4}}
+\begin{document}
+{\huge\bfseries Adam Smith}\hfill{\small Charlotte, NC}\\[4pt]
+{\small\color{accent} SOFTWARE ENGINEER \enspace / \enspace FINANCIAL SYSTEMS \enspace + \enspace APPLIED AI}\\[6pt]
+{\small \href{mailto:adamruns27@gmail.com}{adamruns27@gmail.com} \enspace$\cdot$\enspace
+\href{https://adamruns.com}{adamruns.com} \enspace$\cdot$\enspace
+\href{https://github.com/adamruns}{GitHub: adamruns} \enspace$\cdot$\enspace
+\href{https://www.linkedin.com/in/adam-robert-smith/}{LinkedIn}}\\[8pt]
+Full-stack engineer who owns production workflows from API design to financial reconciliation. Builds reliable integrations and shared AI development tools; completed an M.S. in Computer Science with a 4.0 while working full-time.
+\section*{EXPERIENCE}
+\role{MedShift}{January 2025 - Present}{Software Engineer II (promoted February 2026)}{Charlotte, NC}
+\begin{itemize}
+\item Built and own the Buy Side disbursement workflow, recording \textbf{\$119.6M across 1,087 funded applications} as of July 2026, including historical backfills. Replaced manual finance work with automated processing and reconciliation.
+\item Authored the \textbf{QuickBooks Online integration}, accounting for \textbf{\$31.0M in posted invoices} by July 2026; built financial API integrations and document-collection workflows for asset sales.
+\item Standardized AI-assisted development with repository-level architecture and test conventions, reusable pre-PR checks, MCP integrations, and an AI PR-review pipeline with human decision-making.
+\item Shipped \textbf{1,000+ merged PRs} by July 2026; contributed across \textbf{18 repositories} and reviewed \textbf{1,572 peer PRs} in the January 2025 - July 2026 reporting period.
+\item Diagnosed and fixed a lending-pricing defect by reconstructing affected payment schedules and validating calculations against recorded payments.
+\end{itemize}
+{\small\textit{Previously Software Engineer I, January 2025 - February 2026}}
+\begin{itemize}
+\item Delivered lending features across Django/DRF, Vue, and TypeScript; resolved production defects and N+1 query issues to improve API performance and platform reliability.
+\end{itemize}
+\role{Prisma Health / Clemson Senior Capstone}{August - December 2024}{Senior Capstone Researcher}{Clemson, SC}
+\begin{itemize}
+\item Designed a REST API and synthetic healthcare datasets for Power BI nurse-workload dashboards, integrating the NASA Task Load Index; contributed to a React-based capstone website.
+\end{itemize}
+\role{ScopeStack}{June - September 2023}{Software Engineer (Contract)}{Remote}
+\begin{itemize}
+\item Resolved \textbf{50+ issues} in a Ruby on Rails SaaS platform; built interactive pricing calculators and onboarding documentation.
+\end{itemize}
+\role{Fortis}{June 2022 - January 2023}{Software Engineer (Intern)}{Greenville, SC}
+\begin{itemize}
+\item Pair-programmed Rails/JavaScript infrastructure upgrades and dependency replacements; joined client architecture and requirements discussions.
+\end{itemize}
+\role{BoltAffect}{September 2020 - December 2021}{Software Engineer}{Taylors, SC}
+\begin{itemize}
+\item Shipped a React Native app to both App Stores and built a barcode-driven warehouse tracking system on Linux.
+\end{itemize}
+\section*{EDUCATION}
+\textbf{Clemson University} \hfill \textbf{4.0 GPA}\\
+M.S. Computer Science, Artificial Intelligence \& Machine Learning \hfill May 2026\\
+B.S. Computer Science, Palmetto Fellows Scholar \hfill December 2024
+\section*{TECHNICAL SKILLS}
+\textbf{Core:} Python, TypeScript, JavaScript, SQL, Ruby; Django, DRF, Vue, React Native, Rails\\
+\textbf{Infrastructure:} PostgreSQL, Redis, Celery, Docker, Linux, AWS, Git\\
+\textbf{Integrations \& AI:} QuickBooks Online, DocuSign, Auth0, WorkOS, Equifax, Middesk, MCP, Claude Code, Codex
+\end{document}

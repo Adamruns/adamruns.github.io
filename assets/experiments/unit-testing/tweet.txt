@@ -1,0 +1,11 @@
+AI-written tests: useful?
+
+GPT-6 Astra · 20 SymPy issues · 80 runs
+Acceptance passes:
+No new tests: 28/40
+Write a test: 28/40
+
+29/29 valid generated suites caught the original bug.
+
+Small pilot; limits & data:
+https://adamruns.com/unit-testing.html

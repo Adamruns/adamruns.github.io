@@ -1,0 +1,16 @@
+[
+  {
+    "instance_id": "sympy__sympy-23262",
+    "run_id": "sympy__sympy-23262--write-tests--r1",
+    "case": "test_lambdify_preserves_tuple_structure[expr1]",
+    "finding": "The reference patch generates invalid Python for an empty tuple. This generated test passes on the original and agent-patched code but fails on the benchmark reference fix.",
+    "reproduction": "from sympy import lambdify; assert lambdify([], (), modules=\"math\")() == ()",
+    "reference_output": "return (,) -> SyntaxError",
+    "observations": {
+      "agent": "passed",
+      "original": "passed",
+      "reference": "failed"
+    },
+    "scoring": "Full suite remains excluded from reference-valid regression metrics under the frozen protocol. This is a separate reviewed observation, not a score adjustment."
+  }
+]

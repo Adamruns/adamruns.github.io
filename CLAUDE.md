@@ -1,52 +1,71 @@
-# CLAUDE.md
+# Repository guidance
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Personal portfolio for Adam Smith, hosted by GitHub Pages at `adamruns.com`.
+Keep the site vanilla HTML/CSS/JS: no framework, bundler, or application package.json.
 
-## What this is
+## Preview and publish
 
-Personal portfolio site for Adam Smith — vanilla HTML/CSS/JS, no frameworks, no build step. Hosted on GitHub Pages from `master`, served at `adamruns.com` (CNAME).
-
-## Working on the site
-
-- **Preview locally:** open any `.html` file in a browser, or run a static server from the repo root (e.g. `python3 -m http.server 8000`).
-- **Deploy:** push to `master`. GitHub Pages picks it up automatically — there is no build, no CI.
-- **Cache busting:** `index.html` and the other pages reference `assets/css/style.css?v=2` and `assets/js/main.js?v=2`. Bump the `?v=` query on every page when changing those files, or recently-cached visitors will see stale assets.
+- Preview with `python3 -m http.server 8765`.
+- Adam selected Afterglow and explicitly authorized publishing on October 8, 2026.
+- That authorization covers this release; do not require another confirmation for it.
+- `master` deploys automatically; preserve `CNAME`.
+- CSS and JavaScript references use `?v=7`; bump both pages' references when updating shared assets.
 
 ## Architecture
 
-### Page structure
+`index.html` is the primary portfolio. `photography.html` contains the full gallery.
+`about.html`, `experience.html`, `projects.html`, and `contact.html` redirect old
+URLs to homepage anchors and include usable fallback links.
+The full pages share header/footer patterns. Keep their navigation and links consistent.
 
-Six top-level pages, each a standalone HTML file: `index.html`, `about.html`, `experience.html`, `projects.html`, `photography.html`, `contact.html`. There is no template engine — the `<nav>` block and `<footer>` block are **duplicated verbatim** across all six pages. Any nav/footer change must be applied to every page. The current page's nav link gets `class="active"`.
+`assets/css/style.css` contains shared layout; `assets/css/afterglow.css` applies the
+selected midnight/blue design. Both use custom properties,
+self-hosted Manrope and Instrument Serif, and responsive breakpoints at 1050,
+760, and 370 pixels. No persistent theme setting is required.
 
-### CSS
+`assets/js/main.js` contains independent initializers. Each checks for its target
+before running. Native dialogs provide modal semantics; explicit keyboard cycling
+and focus restoration are verified. Preserve reduced-motion behavior, offscreen/
+hidden-tab animation suspension, touch scrolling, and meaningful button names.
+Project stories are authored static data, not API-fetched or user-provided HTML.
 
-Single stylesheet at `assets/css/style.css`. Theming is driven by CSS custom properties on `:root`, with overrides under `[data-theme="dark"]` — never hardcode colors, use the variables. Spacing also flows through `--space-*` variables. Mobile breakpoint is `max-width: 768px`; an intermediate breakpoint at 769–1024px only adjusts `.photo-grid` columns.
+## Content and assets
 
-### JavaScript
+- Maintain a confident, conversational first-person voice. Use supported achievements,
+  not invented metrics or claims of sole ownership when the source describes team work.
+- Funding and PR totals are historical snapshots. Funding totals include backfilled
+  records, explained in the case study and résumé. Do not imply new revenue generated.
+- `assets/adam_smith_resume.tex` is the source for the one-page PDF. Rebuild with
+  Tectonic, check page count, extract text, render, and visually inspect changes.
+- Preserve original photos; serve optimized WebP derivatives.
+- X profile: `https://x.com/tokensmax`; GitHub: `https://github.com/adamruns`;
+  LinkedIn: `https://www.linkedin.com/in/adam-robert-smith/`.
+- `docs/` is ignored and contains local-only preview tooling and private source notes.
+  Never copy raw Career Ops reports, peer statistics, or company records into deployed assets.
 
-Single file at `assets/js/main.js`. Four init functions wired up on `DOMContentLoaded`:
+## Validation
 
-- `initNavToggle` — mobile hamburger
-- `initScrollAnimations` — IntersectionObserver adds `.visible` to `.fade-in` elements (CSS handles the transition; `.delay-1` … `.delay-5` stagger them)
-- `initThemeToggle` — toggles `data-theme` on `<html>`, persists to `localStorage`, falls back to `prefers-color-scheme`
-- `initLightbox` — only activates on pages that contain `.photo-grid` (currently only `photography.html`); clicking any `<img>` inside opens it
+Check phone widths down to 320px and desktop widths for horizontal overflow.
+Verify all filters, six project dialogs, image navigation, clipboard copying,
+mobile navigation, legacy URLs, reduced motion, and missing asset requests.
+Audit both pages and an open dialog with axe; visually inspect screenshots with
+lazy-loaded photos fully loaded before delivery. Keep runtime dependencies at zero. The rejected slingshot game and Matter.js
+were removed at Adam's request.
 
-Each init bails out early if its target elements aren't on the page, so the same script is safe to load everywhere.
+Scroll motion is progressively enhanced with entry animations, a scroll-linked ribbon,
+a reading-progress line, and subtle portrait/photo movement. Respect reduced motion
+and cancel entry animations when content receives keyboard focus. The supplied Africa
+balloon photo replaces the suit portrait on the portfolio. Running is no longer a
+featured hobby. Keep Origen anonymous and label the commerce build as awaiting its
+first customers; never imply traction or payment-processor integration.
 
-### Assets
+Afterglow is the chosen production design. The original alternatives are archived
+locally in ignored `docs/preview/design-options/`. Do not publish the design switcher,
+comparison gallery, or rejected game. Theme query parameters no longer change the site.
+The `ambient.js` light ribbons run locally without a rendering library or paid API;
+`motion.js` contains title reveals and pointer details. Meaningful content is static.
 
-- `assets/img/photography/` — full-resolution photos shown via the lightbox; HTML uses `loading="lazy"`
-- `assets/img/headshot-600.jpg` — used by the hero (a larger `headshot.jpg` original is also kept in the repo)
-- `assets/adam_smith_resume.pdf` — linked from the home and experience pages
-- `favicon.svg`, `CNAME` — root-level
-
-## Conventions
-
-- Match the existing voice in copy: warm, first-person, conversational. The design doc in `docs/plans/` (gitignored) captures the intent — not boastful, not corporate, not running/brand metaphors.
-- Skill/tech tags use the existing `.skill-tag` pill component.
-- Keep the stack vanilla. No frameworks, no bundlers, no package.json. The redesign deliberately replaced a jQuery/Bootstrap template — don't reintroduce that complexity.
-
-## Notes
-
-- `docs/` is gitignored; design and planning docs live there locally and aren't deployed.
-- `.idea/` is JetBrains config, also gitignored.
+Verify animation pause, hidden/offscreen suspension, reduced motion, contrast, and
+widths down to 320px. Keep site navigation consistent across the homepage, gallery,
+and Research page. The completed research exports include a reproducibility bundle;
+preserve its evidence and keep raw local experiment data out of Git.
