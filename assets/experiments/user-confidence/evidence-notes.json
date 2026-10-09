@@ -1,0 +1,9 @@
+{
+  "sympy__sympy-22456": {
+    "type": "non-agent-facing annotation correction",
+    "original_annotation_error": "The frozen rationale says _construct_text returns str(text).",
+    "corrected_evidence": "The baseline _construct_text validates that its input is a Python str and returns that same text unchanged. It neither sympifies the text nor creates a Symbol. The reference gives String Atom inheritance and a zero-argument func preserving self; it does not change _construct_text.",
+    "source_path": "sympy/codegen/ast.py, String._construct_text, at the task's recorded base commit",
+    "scope": "This corrects the annotation's wording about returning versus converting a string. The annotation was not included in any agent-facing prompt. Both causal claims remain valid as assigned; no prompt, selection, score, reference patch, frozen source or manifest was changed. The original annotation remains in the frozen manifest for audit."
+  }
+}

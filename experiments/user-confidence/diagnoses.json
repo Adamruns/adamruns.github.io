@@ -1,0 +1,102 @@
+{
+  "sympy__sympy-23413": {
+    "correct": "the Hermite normal form row loop stops after min(m, n) rows even when zero rows have prevented it from finding all the available pivots.",
+    "wrong": "the conversion from Matrix to DomainMatrix drops all-zero trailing rows before the Hermite normal form algorithm starts.",
+    "evidence": "The reference changes _hermite_normal_form's row bound and pivot exhaustion condition. Conversion is untouched; the faulty row scan is present in the DomainMatrix algorithm itself."
+  },
+  "sympy__sympy-22456": {
+    "correct": "String stores its text outside args but inherits a reconstruction contract that does not account for its atomic, non-expression semantics.",
+    "wrong": "String._construct_text sympifies its input into a Symbol, changing the stored text during reconstruction.",
+    "evidence": "_construct_text returns str(text); reference gives String Atom semantics and a zero-argument func preserving self. It does not fix text conversion."
+  },
+  "sympy__sympy-20916": {
+    "correct": "the trailing-digit name splitter only recognizes ASCII letters before the digits, so literal Greek names never get split into a base and subscript.",
+    "wrong": "the pretty printer's subscript glyph table lacks the numeric glyph entries needed for names containing Greek letters.",
+    "evidence": "The same numeric subscript glyphs work after Latin names. The reference changes only the ASCII-only trailing-digit name-splitting regex to accept Unicode letters, leaving glyph tables unchanged."
+  },
+  "sympy__sympy-23262": {
+    "correct": "lambdify's _recursive_to_string renders Python tuple containers without the comma required for a singleton tuple.",
+    "wrong": "PythonCodePrinter._print_tuple omits the trailing comma when it prints a one-element tuple.",
+    "evidence": "The reference changes utilities/lambdify.py _recursive_to_string; its tuple-container branch bypasses doprint on the container. The inherited tuple printer already handles the singleton comma."
+  },
+  "sympy__sympy-24066": {
+    "correct": "the function branch preserves a dimension expression equivalent to one instead of normalizing it to Dimension(1) before the surrounding addition.",
+    "wrong": "the SI dimension registry gives farad and ohm inconsistent base dimensions, so second divided by farad times ohm is not dimensionless.",
+    "evidence": "The issue's is_dimensionless assertion passes. Reference normalizes function argument dimensions using the existing dimension system and does not modify the registry."
+  },
+  "sympy__sympy-23950": {
+    "correct": "Contains.as_set does not return the contained set, so callers cannot obtain the Set interface promised by as_set.",
+    "wrong": "Piecewise sympification changes Contains into an ordinary Boolean and loses its set-conversion behavior.",
+    "evidence": "Direct Contains.as_set is already broken outside Piecewise; reference returns self.args[1] in Contains.as_set and does not change Piecewise."
+  },
+  "sympy__sympy-21379": {
+    "correct": "Mod.eval attempts polynomial gcd simplification on Piecewise-containing arguments and does not catch PolynomialError when that optional simplification is inapplicable.",
+    "wrong": "the assumptions cache reuses entries across symbols with different real assumptions because its cache keys omit those assumptions.",
+    "evidence": "Reference guards the optional polynomial gcd in core/mod.py with PolynomialError handling. Original failure appears after clear_cache, with real symbols; caching can mask the failing simplification without being its cause."
+  },
+  "sympy__sympy-24562": {
+    "correct": "Rational scales q before converting a string denominator to a rational, so Python string repetition changes its value.",
+    "wrong": "the decimal-string parser rounds 0.5 through an inexact binary float, corrupting the rational numerator.",
+    "evidence": "0.5 is binary-exact and Rational('0.5') is correct. Reference accumulates denominator factors into an integer Q instead of multiplying the raw string q."
+  },
+  "sympy__sympy-21930": {
+    "correct": "the second-quantization objects emit ungrouped LaTeX containing an existing superscript, so another exponent creates invalid double-superscript syntax.",
+    "wrong": "LatexPrinter._print_Pow places the new exponent inside the dagger command rather than after the operator.",
+    "evidence": "The reported string places both superscripts after the same ungrouped base. Reference adds outer braces to object-specific _latex methods, not the Pow printer."
+  },
+  "sympy__sympy-22080": {
+    "correct": "the code printer's Mod precedence and unary-minus parenthesization allow -Mod(x, y) to print as -x % y.",
+    "wrong": "Mod.eval moves an outer negative coefficient into its first argument before lambdify invokes the printer.",
+    "evidence": "Expression retains the outer multiplier. Reference changes printing precedence and _print_Mul's unary-minus grouping, not Mod.eval."
+  },
+  "sympy__sympy-24443": {
+    "correct": "the relator-image code maps indexed inverse generators inconsistently; it should map presentation symbols to domain generators and then apply signed exponents.",
+    "wrong": "DihedralGroup returns its generators in a different order on successive accesses, so the identity map pairs different generators.",
+    "evidence": "Reference rewrites relator evaluation from array_form symbol/exponent pairs. DihedralGroup construction and generator ordering are unchanged."
+  },
+  "sympy__sympy-24213": {
+    "correct": "the addition branch compares dimension objects structurally instead of checking equivalence through the dimension system.",
+    "wrong": "the negative scale factor assigned to acceleration reverses its dimension, making acceleration times time incompatible with velocity.",
+    "evidence": "Scale factors and dimensions are separate in the collector. Reference replaces != with equivalent_dims and makes no sign-dependent changes."
+  },
+  "sympy__sympy-22914": {
+    "correct": "PythonCodePrinter's known-functions mapping is missing Min and Max mappings to the Python builtins min and max.",
+    "wrong": "Min and Max evaluation replace symbolic arguments with an unsupported expression type before PythonCodePrinter receives them.",
+    "evidence": "The reported expression remains Min(a,b). Reference adds two entries to _known_functions; symbolic evaluation is unchanged."
+  },
+  "sympy__sympy-22714": {
+    "correct": "Point treats an unevaluated imaginary-part expression as truthy instead of checking whether its is_zero property is explicitly false.",
+    "wrong": "the string parser constructs the Integer coordinates as complex numbers whenever the global evaluate flag is false.",
+    "evidence": "Reference changes Point's coordinate validation to im(a).is_zero is False. It leaves parsing and Integer construction untouched; unevaluated im is not proof of a nonzero imaginary part."
+  },
+  "sympy__sympy-20154": {
+    "correct": "partitions yields the same mutable dictionary repeatedly, so later mutations overwrite the entries retained by list().",
+    "wrong": "the partitions loop resets its remaining-sum state on each iteration, enumerating the final partition repeatedly.",
+    "evidence": "Reference only copies the yielded dictionary. Enumeration logic is unchanged and copying each yield already preserves distinct partitions."
+  },
+  "sympy__sympy-21596": {
+    "correct": "ImageSet intersection with Reals excludes roots of the imaginary part instead of retaining them, and denominator exclusions need separate handling.",
+    "wrong": "ImageSet membership tests only the real part of its expression and ignores the imaginary part when checking whether 2 belongs.",
+    "evidence": "The original ImageSet correctly reports 2 not in S1. Reference fixes the base-set restrictions in the intersection handler, not ImageSet membership."
+  },
+  "sympy__sympy-19346": {
+    "correct": "ReprPrinter lacks handlers that recursively print the contents of native dict and set containers.",
+    "wrong": "Symbol's representation method switches to str formatting when a Symbol is used as a dictionary key or set member.",
+    "evidence": "Reference adds _print_dict and _print_set, recursively invoking the existing printer. Symbol representation is already correct in lists and tuples and is unchanged."
+  },
+  "sympy__sympy-24539": {
+    "correct": "PolyElement.as_expr's else branch overwrites a correctly sized caller-supplied symbol tuple with self.ring.symbols.",
+    "wrong": "expr_from_dict caches the first symbol mapping it receives and ignores replacement symbol tuples on subsequent calls.",
+    "evidence": "Reference fixes the local if/elif in as_expr. The supplied symbols are overwritten before expr_from_dict is called; the helper is unchanged."
+  },
+  "sympy__sympy-19783": {
+    "correct": "the quantum multiplication special cases handle Operator objects but omit Dagger objects when simplifying multiplication by IdentityOperator.",
+    "wrong": "Dagger marks a noncommutative operator as commutative, so Mul sorts IdentityOperator to the wrong side and misses the simplification.",
+    "evidence": "Reference adds Dagger multiplication handling and recognizes Dagger in IdentityOperator.__mul__. It does not change commutativity assumptions."
+  },
+  "sympy__sympy-21612": {
+    "correct": "the string printer fails to parenthesize a reciprocal whose base is itself a power, making a correctly structured nested fraction display ambiguously.",
+    "wrong": "the LaTeX parser's nested-fraction grammar associates division to the left and constructs the wrong expression tree.",
+    "evidence": "Reference only extends a StrPrinter denominator-parenthesis check from Mul to (Mul, Pow). The official regression tests construct expressions without the LaTeX parser."
+  }
+}

@@ -1,0 +1,11 @@
+I confidently gave AI the wrong diagnosis.
+It still passed 29/40 debugging attempts.
+
+GPT-6 Astra · 20 bugs · 160 runs
+Hidden-check passes:
+None added: 28/40
+Correct: 30/40
+Wrong, unsure: 28/40
+Wrong + certain: 29/40
+
+Small pilot + data: https://adamruns.com/user-confidence.html
