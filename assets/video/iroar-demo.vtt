@@ -1,0 +1,14 @@
+WEBVTT
+
+00:00.000 --> 00:04.800
+Search for Computer Science courses.
+Local demo; all course and professor data is sample data.
+
+00:04.800 --> 00:07.400
+Compare professor ratings and grade distributions in the results.
+
+00:07.400 --> 00:11.500
+Open a course to see its details and average grade distribution.
+
+00:11.500 --> 00:14.839
+Select a semester to compare its grades, then return to the list.

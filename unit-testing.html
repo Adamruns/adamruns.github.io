@@ -33,49 +33,22 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@tokensmax" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/css/style.css?v=7" />
-    <link rel="stylesheet" href="assets/css/afterglow.css?v=7" />
+    <link rel="stylesheet" href="assets/css/style.css?v=8" />
+    <link rel="stylesheet" href="assets/css/afterglow.css?v=8" />
     <link rel="stylesheet" href="assets/css/experiment.css?v=1" />
-    <script src="assets/js/ambient.js?v=7" defer></script>
-    <script src="assets/js/main.js?v=7" defer></script>
+    <script src="assets/js/main.js?v=8" defer></script>
     <script src="assets/js/experiment.js?v=1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
+    <header class="personal-header">
       <a class="wordmark" href="index.html" aria-label="Adam Smith, home"
         >adam<span class="logo-star" aria-hidden="true">✳</span></a
       >
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a href="index.html#work">Work</a
-        ><a href="unit-testing.html" aria-current="page">Research</a
-        ><a href="index.html#about">About</a
-        ><a href="index.html#offscreen">Off-screen</a>
-      </nav>
-      <a class="header-contact" href="index.html#contact"
-        >Let’s talk <span aria-hidden="true">↗</span></a
-      >
-      <button
-        class="menu-toggle"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Open navigation"
-      >
-        <span></span><span></span>
-      </button>
-      <nav
-        id="mobile-menu"
-        class="mobile-menu"
-        aria-label="Mobile navigation"
-        hidden
-      >
-        <a href="index.html#work">Selected work <span>01</span></a
-        ><a href="index.html#about">A little about me <span>02</span></a
-        ><a href="index.html#offscreen">Off-screen <span>03</span></a
-        ><a href="index.html#contact">Let’s talk <span>↗</span></a
-        ><a href="unit-testing.html" aria-current="page"
-          >Research <span>↗</span></a
-        ><a href="assets/adam_smith_resume.pdf">View résumé <span>↓</span></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html#work">Projects</a>
+        <a href="photography.html">Photos</a>
+        <a href="unit-testing.html" aria-current="page">Research</a>
       </nav>
     </header>
     <main id="main" class="experiment section-wrap">
@@ -110,7 +83,7 @@
         aria-labelledby="results-title"
       >
         <p class="eyebrow section-number">01 / THE RESULTS</p>
-        <h2 id="results-title">Let the <em>data talk.</em></h2>
+        <h2 id="results-title">Results</h2>
         <p id="result-takeaway" class="section-lead">
           Both testing policies passed every acceptance check in 28/40 attempts.
           All 29 generated suites that passed on the reference fix detected the
@@ -323,7 +296,7 @@
         aria-labelledby="data-title"
       >
         <p class="eyebrow section-number">03 / SHOW YOUR WORK</p>
-        <h2 id="data-title">Open by <em>design.</em></h2>
+        <h2 id="data-title">Data &amp; code</h2>
         <p class="section-lead">
           Inspect the protocol, exact issues, task-level outcomes, and
           reproducible runner. Authentication files and unrelated private
@@ -387,7 +360,7 @@
         aria-labelledby="limits-title"
       >
         <p class="eyebrow section-number">04 / READ THIS BEFORE SHARING</p>
-        <h2 id="limits-title">A pilot.<br /><em>Not a verdict.</em></h2>
+        <h2 id="limits-title">Limitations</h2>
         <div class="limits-copy">
           <p>
             Twenty selected historical issues from one Python repository cannot
@@ -420,12 +393,12 @@
         </div>
       </section>
     </main>
-    <footer class="site-footer section-wrap">
-      <a class="wordmark" href="index.html" aria-label="Adam Smith, home"
-        >adam<span class="logo-star" aria-hidden="true">✳</span></a
-      >
-      <p>© <span data-year>2026</span> Adam Smith</p>
-      <a href="#" class="back-top">BACK TO TOP ↑</a>
+    <footer id="contact" class="personal-footer">
+      <a href="mailto:adamruns27@gmail.com">adamruns27@gmail.com</a>
+      <div>
+        <a href="https://www.linkedin.com/in/adam-robert-smith/">LinkedIn ↗</a
+        ><span>© <span data-year>2026</span> Adam Smith</span>
+      </div>
     </footer>
   </body>
 </html>
