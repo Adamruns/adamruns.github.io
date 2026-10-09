@@ -120,10 +120,6 @@ h1 {
 h2 {
   font-size: clamp(40px, 4.6vw, 56px);
 }
-h1 em,
-h2 em {
-  color: var(--accent);
-}
 h3,
 h4 {
   font-weight: 600;
@@ -136,25 +132,10 @@ h3 {
 p {
   color: var(--muted);
 }
-details > summary {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--text);
-}
 
 .section-wrap {
   width: min(100% - 2 * var(--gutter), var(--max));
   margin-inline: auto;
-}
-.eyebrow {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-}
-.section-number {
-  margin-bottom: 20px;
-  color: var(--accent);
 }
 .skip-link {
   position: fixed;
