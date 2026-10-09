@@ -1,6 +1,5 @@
 "use strict";
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 document.querySelectorAll("[data-year]").forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
@@ -110,98 +109,34 @@ function initPhotos() {
   );
 }
 
-function initProjectMotion() {
-  if (!window.IntersectionObserver || !Element.prototype.animate) return;
-  const previews = [...document.querySelectorAll(".preview-image")];
-  const motions = new Map();
-  const visible = new Set();
-  function sync() {
-    motions.forEach((animation, image) => {
-      if (reducedMotion.matches) {
-        animation.cancel();
-      } else if (
-        visible.has(image) &&
-        !document.hidden &&
-        !document.body.classList.contains("modal-open")
-      ) {
-        animation.play();
-      } else {
-        animation.pause();
-      }
-    });
+function initMenu() {
+  const header = document.querySelector(".site-header");
+  const button = header?.querySelector(".menu-button");
+  if (!button) return;
+  function setOpen(open) {
+    button.setAttribute("aria-expanded", String(open));
+    header.toggleAttribute("data-menu-open", open);
   }
-  previews.forEach((image, index) => {
-    const animation = image.animate(
-      [
-        { transform: "scale(1.04) translateY(0)" },
-        { transform: "scale(1.08) translateY(-1%)" },
-      ],
-      {
-        duration: 6500 + index * 1500,
-        iterations: Infinity,
-        direction: "alternate",
-        easing: "ease-in-out",
-      },
-    );
-    animation.pause();
-    motions.set(image, animation);
-  });
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) visible.add(target);
-      else visible.delete(target);
-    });
-    sync();
-  });
-  previews.forEach((image) => observer.observe(image));
-  document.addEventListener("visibilitychange", sync);
-  window.addEventListener("modalchange", sync);
-  reducedMotion.addEventListener("change", sync);
-  sync();
-}
-
-function initReveals() {
-  if (!window.IntersectionObserver || !Element.prototype.animate) return;
-  const animations = new Map();
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(({ target, isIntersecting }) => {
-        if (!isIntersecting) return;
-        observer.unobserve(target);
-        if (reducedMotion.matches || target.contains(document.activeElement))
-          return;
-        const animation = target.animate(
-          [
-            { opacity: 0, transform: "translateY(16px)" },
-            { opacity: 1, transform: "translateY(0)" },
-          ],
-          { duration: 650, easing: "cubic-bezier(.2,.7,.2,1)" },
-        );
-        animations.set(target, animation);
-        animation.finished
-          .then(() => animations.delete(target))
-          .catch(() => animations.delete(target));
-      });
-    },
-    { threshold: 0.05 },
+  button.addEventListener("click", () =>
+    setOpen(button.getAttribute("aria-expanded") !== "true"),
   );
-  document
-    .querySelectorAll(
-      ".intro, .personal-project, .note-section, .personal-photos, .gallery-grid .photo-button",
-    )
-    .forEach((node) => observer.observe(node));
-  document.addEventListener("focusin", (event) => {
-    animations.forEach((animation, target) => {
-      if (target.contains(event.target)) animation.cancel();
-    });
+  header
+    .querySelectorAll(".site-nav a")
+    .forEach((link) => link.addEventListener("click", () => setOpen(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !header.hasAttribute("data-menu-open"))
+      return;
+    setOpen(false);
+    button.focus();
   });
-  reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches)
-      animations.forEach((animation) => animation.cancel());
+  document.addEventListener("click", (event) => {
+    if (!header.contains(event.target)) setOpen(false);
   });
+  window
+    .matchMedia("(min-width: 761px)")
+    .addEventListener("change", () => setOpen(false));
 }
 
 initPhotos();
-initProjectMotion();
-initReveals();
+initMenu();
 if (typeof initAfterglow === "function") initAfterglow();

@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#090d18" />
-    <title>Adam Smith</title>
+    <meta name="theme-color" content="#0b1120" />
+    <title>Adam Smith, Software Engineer</title>
     <meta
       name="description"
-      content="Software engineer at MedShift in Charlotte. A few personal projects, photos, and notes from Adam Smith."
+      content="Adam Smith is a software engineer in Charlotte who builds lending and finance systems at MedShift. Experience, projects, research, and résumé."
     />
     <link rel="canonical" href="https://adamruns.com/" />
-    <meta property="og:title" content="Adam Smith" />
+    <meta property="og:title" content="Adam Smith, Software Engineer" />
     <meta
       property="og:description"
-      content="Software engineer in Charlotte. Projects, photos, and notes."
+      content="Software engineer in Charlotte building lending and finance systems, and the AI tooling around them."
     />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://adamruns.com/" />
     <meta
       property="og:image"
@@ -30,197 +30,532 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link
       rel="preload"
+      href="assets/fonts/instrument-serif-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
       href="assets/fonts/manrope-400.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/style.css?v=9" />
-    <link rel="stylesheet" href="assets/css/afterglow.css?v=9" />
-    <script src="assets/js/ambient.js?v=9" defer></script>
-    <script src="assets/js/main.js?v=9" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=10" />
+    <link rel="stylesheet" href="assets/css/afterglow.css?v=10" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <script src="assets/js/ambient.js?v=10" defer></script>
+    <script src="assets/js/main.js?v=10" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adam Smith",
+        "jobTitle": "Software Engineer",
+        "url": "https://adamruns.com/",
+        "image": "https://adamruns.com/assets/img/optimized/balloon-portrait.webp",
+        "worksFor": { "@type": "Organization", "name": "MedShift" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Clemson University" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Charlotte",
+          "addressRegion": "NC"
+        },
+        "sameAs": [
+          "https://github.com/adamruns",
+          "https://www.linkedin.com/in/adam-robert-smith/",
+          "https://x.com/tokensmax"
+        ]
+      }
+    </script>
   </head>
-  <body class="personal-home">
+  <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="personal-header">
+    <header class="site-header">
       <a class="wordmark" href="index.html" aria-label="Adam Smith, home"
         >adam<span class="logo-star" aria-hidden="true">✳</span></a
       >
-      <nav aria-label="Main navigation">
-        <a href="index.html#work">Projects</a>
-        <a href="photography.html">Photos</a>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#projects">Projects</a>
         <a href="index.html#research">Research</a>
+        <a href="photography.html">Photos</a>
       </nav>
+      <a class="button header-resume" href="assets/adam_smith_resume.pdf"
+        >Résumé</a
+      >
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="menu-icon" aria-hidden="true"></span>Menu
+      </button>
     </header>
-    <main id="main" class="personal-main">
+
+    <main id="main">
       <section id="about" class="intro" aria-labelledby="intro-title">
         <canvas id="afterglow-canvas" aria-hidden="true"></canvas>
-        <div class="intro-text">
-          <h1 id="intro-title">Adam Smith<span aria-hidden="true">.</span></h1>
-          <p class="intro-role">Software engineer in Charlotte.</p>
-          <p id="experience">
-            I work on lending software at MedShift. I studied computer science
-            at Clemson, where I earned my B.S. and M.S.
+        <img
+          class="intro-portrait"
+          src="assets/img/optimized/balloon-portrait.webp"
+          width="512"
+          height="512"
+          alt="Adam Smith smiling during a hot-air balloon ride"
+          fetchpriority="high"
+        />
+        <div class="intro-copy">
+          <h1 id="intro-title">Adam Smith</h1>
+          <p class="intro-role">
+            Software engineer building lending and finance systems
           </p>
-          <p>
-            Outside work, I’m into travel, investing, and finding a good deal. I
-            also spend an unreasonable amount of time using AI.
+          <p class="intro-summary">
+            At MedShift I build the workflows that pay out funded loans, record
+            them in accounting, and reconcile them with finance. I also set up
+            how my team works with AI coding tools. I finished my M.S. in
+            computer science at Clemson with a 4.0 while working full-time.
           </p>
-          <div class="personal-links" aria-label="More about Adam">
-            <a href="assets/adam_smith_resume.pdf">Résumé ↗</a>
-            <a href="https://github.com/adamruns">GitHub ↗</a>
-            <a href="https://x.com/tokensmax">X ↗</a>
+          <div class="intro-actions">
+            <a
+              class="button button-accent"
+              href="assets/adam_smith_resume.pdf"
+              >View résumé</a
+            >
+            <a class="button" href="mailto:adamruns27@gmail.com">Email me</a>
           </div>
+          <ul class="intro-links" aria-label="Profiles">
+            <li><a href="https://www.linkedin.com/in/adam-robert-smith/">LinkedIn</a></li>
+            <li><a href="https://github.com/adamruns">GitHub</a></li>
+            <li><a href="https://x.com/tokensmax">X</a></li>
+          </ul>
         </div>
-        <figure class="intro-photo">
-          <img
-            src="assets/img/optimized/balloon-portrait.webp"
-            width="512"
-            height="512"
-            alt="Adam Smith"
-            fetchpriority="high"
-          />
-        </figure>
+        <dl class="intro-facts">
+          <div>
+            <dt>Currently</dt>
+            <dd>Software Engineer II at MedShift</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Financial systems and applied AI</dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Charlotte, North Carolina</dd>
+          </div>
+        </dl>
       </section>
+
       <section
-        id="work"
-        class="personal-section"
+        id="experience"
+        class="resume-section"
+        aria-labelledby="experience-title"
+      >
+        <div class="section-rail">
+          <h2 id="experience-title">Experience</h2>
+          <a class="text-link" href="assets/adam_smith_resume.pdf"
+            >One-page résumé (PDF)</a
+          >
+        </div>
+        <ol class="roles">
+          <li class="role role-featured">
+            <div class="role-header">
+              <h3>MedShift</h3>
+              <p class="role-meta">Charlotte, NC</p>
+            </div>
+            <ol class="title-history" aria-label="Titles at MedShift">
+              <li>
+                <span>Software Engineer II</span>
+                <span class="role-dates">Feb 2026 – Present</span>
+              </li>
+              <li>
+                <span>Software Engineer I</span>
+                <span class="role-dates">Jan 2025 – Feb 2026</span>
+              </li>
+            </ol>
+            <p class="role-summary">
+              I work across Django REST Framework, Vue, and TypeScript on a
+              lending platform, mostly on what happens after a loan is
+              approved: paying it out, recording it, and reconciling it with
+              finance. I started out shipping lending features and fixing
+              production defects and N+1 queries to improve API performance.
+            </p>
+            <figure class="ledger" aria-labelledby="ledger-caption">
+              <figcaption id="ledger-caption">
+                Work by the numbers, as of July 2026
+              </figcaption>
+              <dl>
+                <div>
+                  <dt>Disbursements recorded in the workflow I built</dt>
+                  <dd>$119.6M</dd>
+                </div>
+                <div>
+                  <dt>Funded applications in that workflow</dt>
+                  <dd>1,087</dd>
+                </div>
+                <div>
+                  <dt>Invoices posted by my QuickBooks Online integration</dt>
+                  <dd>$31.0M</dd>
+                </div>
+                <div>
+                  <dt>Merged pull requests across 18 repositories</dt>
+                  <dd>1,000+</dd>
+                </div>
+                <div>
+                  <dt>Teammates’ pull requests reviewed</dt>
+                  <dd>1,572</dd>
+                </div>
+              </dl>
+              <p class="ledger-note">
+                Disbursement totals include historical records backfilled when
+                the workflow launched. They measure money recorded, not revenue.
+              </p>
+            </figure>
+            <ul class="highlights">
+              <li>
+                <h4>Buy Side disbursement workflow</h4>
+                <p>
+                  Built and own the workflow that pays out funded applications.
+                  It replaced manual finance work with automated processing and
+                  reconciliation.
+                </p>
+              </li>
+              <li>
+                <h4>QuickBooks Online integration</h4>
+                <p>
+                  Wrote the integration that posts purchases and invoices to
+                  QuickBooks Online, plus the financial API integrations and
+                  document collection used for asset sales.
+                </p>
+              </li>
+              <li>
+                <h4>AI-assisted development</h4>
+                <p>
+                  Standardized how the team builds with AI: repository-level
+                  architecture and testing conventions, reusable pre-PR checks,
+                  MCP integrations, and an AI pull-request review pipeline where
+                  people still make the call.
+                </p>
+              </li>
+              <li>
+                <h4>Lending-pricing defect</h4>
+                <p>
+                  Tracked down a pricing bug by reconstructing the affected
+                  payment schedules and checking each calculation against
+                  recorded payments, then shipped the fix.
+                </p>
+              </li>
+            </ul>
+          </li>
+          <li class="role">
+            <div class="role-header">
+              <h3>Prisma Health and Clemson</h3>
+              <p class="role-meta">Clemson, SC</p>
+            </div>
+            <p class="role-title">
+              <span>Senior Capstone Researcher</span>
+              <span class="role-dates">Aug – Dec 2024</span>
+            </p>
+            <p class="role-summary">
+              Designed a REST API and synthetic healthcare datasets for Power BI
+              dashboards that track nurse workload with the NASA Task Load
+              Index, and contributed to the project’s React site.
+            </p>
+          </li>
+          <li class="role">
+            <div class="role-header">
+              <h3>ScopeStack</h3>
+              <p class="role-meta">Remote</p>
+            </div>
+            <p class="role-title">
+              <span>Software Engineer, contract</span>
+              <span class="role-dates">Jun – Sep 2023</span>
+            </p>
+            <p class="role-summary">
+              Resolved more than 50 issues in a Ruby on Rails SaaS platform and
+              built interactive pricing calculators and onboarding
+              documentation.
+            </p>
+          </li>
+          <li class="role">
+            <div class="role-header">
+              <h3>Fortis</h3>
+              <p class="role-meta">Greenville, SC</p>
+            </div>
+            <p class="role-title">
+              <span>Software Engineer Intern</span>
+              <span class="role-dates">Jun 2022 – Jan 2023</span>
+            </p>
+            <p class="role-summary">
+              Pair-programmed Rails and JavaScript infrastructure upgrades and
+              dependency replacements, and joined client architecture and
+              requirements discussions.
+            </p>
+          </li>
+          <li class="role">
+            <div class="role-header">
+              <h3>BoltAffect</h3>
+              <p class="role-meta">Taylors, SC</p>
+            </div>
+            <p class="role-title">
+              <span>Software Engineer</span>
+              <span class="role-dates">Sep 2020 – Dec 2021</span>
+            </p>
+            <p class="role-summary">
+              Shipped a React Native app to both app stores and built a
+              barcode-driven warehouse tracking system on Linux.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section
+        id="education"
+        class="resume-section"
+        aria-labelledby="education-title"
+      >
+        <div class="section-rail">
+          <h2 id="education-title">Education</h2>
+        </div>
+        <div class="education">
+          <div class="role-header">
+            <h3>Clemson University</h3>
+            <p class="role-meta">4.0 GPA</p>
+          </div>
+          <ul class="degrees">
+            <li>
+              <span
+                >M.S. in Computer Science, Artificial Intelligence and Machine
+                Learning</span
+              >
+              <span class="role-dates">May 2026</span>
+            </li>
+            <li>
+              <span>B.S. in Computer Science, Palmetto Fellows Scholar</span>
+              <span class="role-dates">Dec 2024</span>
+            </li>
+          </ul>
+          <p class="role-summary">
+            I completed the master’s while working full-time at MedShift.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills" class="resume-section" aria-labelledby="skills-title">
+        <div class="section-rail">
+          <h2 id="skills-title">Skills</h2>
+        </div>
+        <dl class="skills">
+          <div>
+            <dt>Languages</dt>
+            <dd>Python, TypeScript, JavaScript, SQL, Ruby</dd>
+          </div>
+          <div>
+            <dt>Frameworks</dt>
+            <dd>Django, Django REST Framework, Vue, React Native, Rails</dd>
+          </div>
+          <div>
+            <dt>Infrastructure</dt>
+            <dd>PostgreSQL, Redis, Celery, Docker, Linux, AWS, Git</dd>
+          </div>
+          <div>
+            <dt>Integrations</dt>
+            <dd>QuickBooks Online, DocuSign, Auth0, WorkOS, Equifax, Middesk</dd>
+          </div>
+          <div>
+            <dt>AI tooling</dt>
+            <dd>Claude Code, Codex, Model Context Protocol (MCP)</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        id="projects"
+        class="resume-section"
         aria-labelledby="projects-title"
       >
-        <div class="personal-section-heading">
-          <h2 id="projects-title">A few projects</h2>
-          <span>Made outside work</span>
+        <div class="section-rail">
+          <h2 id="projects-title">Projects</h2>
+          <p>Things I’ve built outside work.</p>
         </div>
-        <div class="personal-projects">
-          <article class="personal-project" aria-labelledby="iroar-title">
-            <div class="project-preview">
-              <img
-                class="preview-image"
-                src="assets/img/projects/iroar.webp"
-                width="1280"
-                height="800"
-                alt="iRoar Premium course search with professor ratings and grade distributions; sample data"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-heading">
-              <h3 id="iroar-title">iRoar Premium</h3>
-              <a
-                href="https://github.com/Adamruns/iroarpremium"
-                aria-label="iRoar Premium source on GitHub"
-                >Code ↗</a
-              >
-            </div>
+        <div class="projects">
+          <article class="project" aria-labelledby="iroar-title">
+            <img
+              src="assets/img/projects/iroar.webp"
+              width="1280"
+              height="800"
+              alt="iRoar Premium course search showing professor ratings and grade distributions, with sample data"
+              loading="lazy"
+            />
+            <h3 id="iroar-title">iRoar Premium</h3>
             <p>
-              A Chrome extension I built for Clemson’s course registration, with
-              professor ratings and grade distributions in the same place.
+              A Chrome extension for Clemson’s course registration that puts
+              professor ratings and grade distributions next to each class. The
+              preview uses sample data.
             </p>
-            <p class="preview-note">Preview uses sample data.</p>
+            <a
+              class="text-link"
+              href="https://github.com/Adamruns/iroarpremium"
+              aria-label="iRoar Premium source code on GitHub"
+              >Source code</a
+            >
           </article>
-          <article class="personal-project" aria-labelledby="smith-title">
-            <div class="project-preview">
-              <img
-                class="preview-image"
-                src="assets/img/projects/smith-shin.webp"
-                width="1280"
-                height="800"
-                alt="Smith and Shin accounting firm homepage"
-                loading="lazy"
-              />
-            </div>
-            <div class="project-heading">
-              <h3 id="smith-title">Smith &amp; Shin</h3>
-              <a
-                href="https://smithandshin.com"
-                aria-label="Visit Smith and Shin"
-                >Site ↗</a
-              >
-            </div>
+          <article class="project" aria-labelledby="smith-title">
+            <img
+              src="assets/img/projects/smith-shin.webp"
+              width="1280"
+              height="800"
+              alt="Smith and Shin accounting firm homepage"
+              loading="lazy"
+            />
+            <h3 id="smith-title">Smith &amp; Shin</h3>
             <p>
-              I built and run the website for my dad’s accounting firm in South
-              Carolina, including the domain and hosting.
+              The website for my dad’s accounting firm in South Carolina. I
+              built it and run the domain and hosting.
             </p>
+            <a
+              class="text-link"
+              href="https://smithandshin.com"
+              aria-label="Visit the Smith and Shin website"
+              >Visit the site</a
+            >
           </article>
         </div>
       </section>
+
       <section
         id="research"
-        class="personal-section note-section"
-        aria-labelledby="notes-title"
+        class="resume-section"
+        aria-labelledby="research-title"
       >
-        <h2 id="notes-title">AI experiments</h2>
-        <a class="note-link" href="user-confidence.html"
-          ><span>Does your AI need you to be right?</span
-          ><span aria-hidden="true">↗</span></a
-        >
-        <p>160 attempts testing whether confident, incorrect advice derails a coding agent.</p>
-        <a class="note-link" href="unit-testing.html"
-          ><span>Do AI agents still need to write tests?</span
-          ><span aria-hidden="true">↗</span></a
-        >
-        <p>I ran 80 bug-fixing attempts to find out. Here’s what happened.</p>
-      </section>
-      <section
-        id="offscreen"
-        class="personal-section"
-        aria-labelledby="photos-title"
-      >
-        <div class="personal-section-heading">
-          <h2 id="photos-title">Photos</h2>
-          <a href="photography.html">More photos ↗</a>
+        <div class="section-rail">
+          <h2 id="research-title">Research</h2>
+          <p>Controlled experiments on AI coding agents, with open data.</p>
         </div>
-        <div class="personal-photos">
-          <button class="photo-button" data-photo="0">
-            <img
-              src="assets/img/optimized/img_8769.webp"
-              alt="Pine cones and delicate spider webs in mountain fog"
-              width="900"
-              height="1200"
-              loading="lazy"
-            />
-          </button>
-          <button class="photo-button" data-photo="1">
-            <img
-              src="assets/img/optimized/img_8172.webp"
-              alt="Dried wildflowers glowing in warm afternoon light"
-              width="900"
-              height="1200"
-              loading="lazy"
-            />
-          </button>
-          <button class="photo-button" data-photo="2">
-            <img
-              src="assets/img/optimized/img_8774.webp"
-              alt="Friends taking a break on a foggy mountain hike"
-              width="900"
-              height="1200"
-              loading="lazy"
-            />
-          </button>
+        <ul class="research-list">
+          <li>
+            <h3>
+              <a href="user-confidence.html"
+                >Does your AI need you to be right?</a
+              >
+            </h3>
+            <p>
+              160 attempts testing whether confident, incorrect debugging advice
+              derails a coding agent.
+            </p>
+          </li>
+          <li>
+            <h3>
+              <a href="unit-testing.html"
+                >Do AI agents still need to write tests?</a
+              >
+            </h3>
+            <p>
+              80 bug-fixing attempts measuring whether new regression tests help
+              agents fix bugs and catch future faults.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section
+        id="outside-work"
+        class="resume-section"
+        aria-labelledby="outside-title"
+      >
+        <div class="section-rail">
+          <h2 id="outside-title">Outside work</h2>
+        </div>
+        <div class="outside">
+          <p class="role-summary">
+            I’m into travel, investing, and finding a good deal. I spend an
+            unreasonable amount of time using AI, and I take photos, mostly
+            outdoors.
+          </p>
+          <div class="photo-strip">
+            <button class="photo-button" type="button" data-photo="0">
+              <img
+                src="assets/img/optimized/img_8769.webp"
+                alt="Pine cones and delicate spider webs in mountain fog"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+            </button>
+            <button class="photo-button" type="button" data-photo="1">
+              <img
+                src="assets/img/optimized/img_8172.webp"
+                alt="Dried wildflowers glowing in warm afternoon light"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+            </button>
+            <button class="photo-button" type="button" data-photo="2">
+              <img
+                src="assets/img/optimized/img_8774.webp"
+                alt="Friends taking a break on a foggy mountain hike"
+                width="900"
+                height="1200"
+                loading="lazy"
+              />
+            </button>
+          </div>
+          <a class="text-link" href="photography.html">See all photos</a>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Let’s talk</h2>
+        <p>
+          Email is the best way to reach me about a role or a project.
+        </p>
+        <a class="contact-email" href="mailto:adamruns27@gmail.com"
+          >adamruns27@gmail.com</a
+        >
+        <div class="intro-actions">
+          <a class="button button-accent" href="assets/adam_smith_resume.pdf"
+            >View résumé</a
+          >
+          <a class="button" href="https://www.linkedin.com/in/adam-robert-smith/"
+            >Connect on LinkedIn</a
+          >
         </div>
       </section>
     </main>
-    <footer id="contact" class="personal-footer">
-      <a href="mailto:adamruns27@gmail.com">adamruns27@gmail.com</a>
-      <div>
-        <a href="https://www.linkedin.com/in/adam-robert-smith/">LinkedIn ↗</a
-        ><span>© <span data-year>2026</span> Adam Smith</span>
-      </div>
+
+    <footer class="site-footer">
+      <p>© <span data-year>2026</span> Adam Smith</p>
+      <nav aria-label="Elsewhere">
+        <a href="mailto:adamruns27@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/adam-robert-smith/">LinkedIn</a>
+        <a href="https://github.com/adamruns">GitHub</a>
+        <a href="https://x.com/tokensmax">X</a>
+      </nav>
     </footer>
+
     <dialog
       id="photo-dialog"
       class="photo-dialog"
       aria-label="Photograph viewer"
     >
-      <button class="dialog-close" aria-label="Close photograph">×</button>
+      <button class="dialog-close" type="button" aria-label="Close photograph">
+        ×
+      </button>
       <figure>
         <img id="lightbox-image" alt="" />
         <figcaption id="lightbox-caption"></figcaption>
       </figure>
       <div class="photo-controls">
-        <button data-photo-prev aria-label="Previous photograph">←</button
+        <button type="button" data-photo-prev aria-label="Previous photograph">
+          ←</button
         ><span id="photo-count"></span
-        ><button data-photo-next aria-label="Next photograph">→</button>
+        ><button type="button" data-photo-next aria-label="Next photograph">
+          →
+        </button>
       </div>
     </dialog>
   </body>
