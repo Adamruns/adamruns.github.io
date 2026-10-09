@@ -1,5 +1,23 @@
 "use strict";
 
+const ACTIVITY_DAY_MILLISECONDS = 24 * 60 * 60 * 1000;
+const ACTIVITY_DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+const ACTIVITY_MONTH_FORMAT = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  timeZone: "UTC",
+});
+const ACTIVITY_UPDATED_FORMAT = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
+const NUMBER_FORMAT = new Intl.NumberFormat("en-US");
+
 document.querySelectorAll("[data-year]").forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
@@ -137,6 +155,99 @@ function initMenu() {
     .addEventListener("change", () => setOpen(false));
 }
 
+function activityLevelThresholds(counts) {
+  const activeCounts = counts
+    .filter((count) => count > 0)
+    .sort((first, second) => first - second);
+  return [0.25, 0.5, 0.75].map(
+    (quantile) =>
+      activeCounts[Math.floor(quantile * (activeCounts.length - 1))] ?? 0,
+  );
+}
+
+function renderActivity(container, activity) {
+  const startTime = Date.parse(`${activity.start}T00:00:00Z`);
+  const firstWeekday = new Date(startTime).getUTCDay();
+  const weekCount = Math.ceil((firstWeekday + activity.counts.length) / 7);
+  const thresholds = activityLevelThresholds(activity.counts);
+  const activeDays = activity.counts.filter((count) => count > 0).length;
+  const grid = container.querySelector(".activity-grid");
+  const months = container.querySelector(".activity-months");
+  const monthLabels = [];
+  let previousMonth = null;
+
+  activity.counts.forEach((count, index) => {
+    const date = new Date(startTime + index * ACTIVITY_DAY_MILLISECONDS);
+    const cell = document.createElement("span");
+    cell.dataset.level = count
+      ? 1 + thresholds.filter((threshold) => count > threshold).length
+      : 0;
+    cell.title = `${NUMBER_FORMAT.format(count)} ${count === 1 ? "contribution" : "contributions"} on ${ACTIVITY_DATE_FORMAT.format(date)}`;
+    if (index === 0) cell.style.gridRowStart = firstWeekday + 1;
+    grid.append(cell);
+
+    const position = firstWeekday + index;
+    if (index > 0 && position % 7 !== 0) return;
+
+    if (date.getUTCMonth() !== previousMonth) {
+      monthLabels.push({
+        column: Math.floor(position / 7) + 1,
+        text: ACTIVITY_MONTH_FORMAT.format(date),
+      });
+    }
+    previousMonth = date.getUTCMonth();
+  });
+
+  // A partial first month would print its label on top of the next one.
+  if (monthLabels.length > 1 && monthLabels[1].column - monthLabels[0].column < 3)
+    monthLabels.shift();
+  monthLabels.forEach(({ column, text }) => {
+    const label = document.createElement("span");
+    label.textContent = text;
+    label.style.gridColumnStart = column;
+    months.append(label);
+  });
+
+  grid.style.setProperty("--activity-weeks", weekCount);
+  months.style.setProperty("--activity-weeks", weekCount);
+  const total = NUMBER_FORMAT.format(activity.total);
+  const days = NUMBER_FORMAT.format(activeDays);
+  grid.setAttribute(
+    "aria-label",
+    `${total} contributions in the past year, on ${days} different days`,
+  );
+  container
+    .querySelector("[data-activity-summary]")
+    .replaceChildren(
+      Object.assign(document.createElement("strong"), { textContent: total }),
+      " contributions in the past year, on ",
+      Object.assign(document.createElement("strong"), { textContent: days }),
+      " different days.",
+    );
+  container.querySelector("[data-activity-updated]").textContent =
+    `Updated ${ACTIVITY_UPDATED_FORMAT.format(new Date(activity.updated))}`;
+  const scroller = container.querySelector(".activity-scroll");
+  scroller.scrollLeft = scroller.scrollWidth;
+}
+
+function initActivity() {
+  const container = document.querySelector("[data-activity-source]");
+  if (!container) return;
+  fetch(container.dataset.activitySource)
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`Activity request failed with ${response.status}`);
+      return response.json();
+    })
+    .then((activity) => renderActivity(container, activity))
+    .catch(() => {
+      container.classList.add("activity-unavailable");
+      container.querySelector("[data-activity-summary]").textContent =
+        "The contribution calendar didn’t load. You can still see it on GitHub.";
+    });
+}
+
 initPhotos();
 initMenu();
+initActivity();
 if (typeof initAfterglow === "function") initAfterglow();

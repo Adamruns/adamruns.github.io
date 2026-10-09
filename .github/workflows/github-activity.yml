@@ -1,0 +1,40 @@
+name: Refresh GitHub activity
+
+on:
+  schedule:
+    # 6:23 a.m. Eastern (standard time), daily.
+    - cron: '23 11 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: github-activity
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch contribution calendar
+        run: python3 scripts/update_github_activity.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and rebuild Pages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/data/github-activity.json
+          git commit -m 'Refresh GitHub Activity Calendar'
+          git push
+          # Pushes made with GITHUB_TOKEN may not start a Pages build on their own.
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages/builds"

@@ -7,7 +7,7 @@
     <title>Adam Smith, Software Engineer</title>
     <meta
       name="description"
-      content="Adam Smith is a software engineer in Charlotte who builds lending and finance systems at MedShift. Experience, projects, research, and résumé."
+      content="Adam Smith is a software engineer in Charlotte who builds lending and finance systems at MedShift. Experience, projects, GitHub activity, and résumé."
     />
     <link rel="canonical" href="https://adamruns.com/" />
     <meta property="og:title" content="Adam Smith, Software Engineer" />
@@ -42,13 +42,13 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/style.css?v=10" />
-    <link rel="stylesheet" href="assets/css/afterglow.css?v=10" />
+    <link rel="stylesheet" href="assets/css/style.css?v=11" />
+    <link rel="stylesheet" href="assets/css/afterglow.css?v=11" />
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <script src="assets/js/ambient.js?v=10" defer></script>
-    <script src="assets/js/main.js?v=10" defer></script>
+    <script src="assets/js/ambient.js?v=11" defer></script>
+    <script src="assets/js/main.js?v=11" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -80,8 +80,8 @@
       >
       <nav id="site-nav" class="site-nav" aria-label="Main navigation">
         <a href="index.html#experience">Experience</a>
+        <a href="index.html#activity">Activity</a>
         <a href="index.html#projects">Projects</a>
-        <a href="index.html#research">Research</a>
         <a href="photography.html">Photos</a>
       </nav>
       <a class="button header-resume" href="assets/adam_smith_resume.pdf"
@@ -313,6 +313,48 @@
       </section>
 
       <section
+        id="activity"
+        class="resume-section"
+        aria-labelledby="activity-title"
+      >
+        <div class="section-rail">
+          <h2 id="activity-title">On GitHub</h2>
+          <p>
+            Every contribution from the past year, including private work
+            repositories. Refreshed daily from GitHub.
+          </p>
+        </div>
+        <div class="activity" data-activity-source="assets/data/github-activity.json">
+          <p class="activity-summary" data-activity-summary>
+            Loading the contribution calendar.
+          </p>
+          <div
+            class="activity-scroll"
+            tabindex="0"
+            role="region"
+            aria-label="Contribution calendar, scrolls sideways"
+          >
+            <div class="activity-months" aria-hidden="true"></div>
+            <div class="activity-grid" role="img" aria-label="Contribution calendar"></div>
+          </div>
+          <div class="activity-footer">
+            <p class="activity-updated">
+              <span class="status-dot" aria-hidden="true"></span
+              ><span data-activity-updated>Updated daily</span>
+            </p>
+            <p class="activity-legend" aria-hidden="true">
+              Less<span data-level="0"></span><span data-level="1"></span
+              ><span data-level="2"></span><span data-level="3"></span
+              ><span data-level="4"></span>More
+            </p>
+            <a class="text-link" href="https://github.com/adamruns"
+              >GitHub profile</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
         id="education"
         class="resume-section"
         aria-labelledby="education-title"
@@ -382,83 +424,49 @@
           <p>Things I’ve built outside work.</p>
         </div>
         <div class="projects">
-          <article class="project" aria-labelledby="iroar-title">
+          <article class="project" aria-labelledby="samba-title">
             <img
-              src="assets/img/projects/iroar.webp"
+              src="assets/img/projects/samba.webp"
               width="1280"
               height="800"
-              alt="iRoar Premium course search showing professor ratings and grade distributions, with sample data"
+              alt="Three screens from the Samba app: the companion tools menu, a game against the AI, and the meld calculator"
               loading="lazy"
             />
-            <h3 id="iroar-title">iRoar Premium</h3>
+            <h3 id="samba-title">Samba</h3>
             <p>
-              A Chrome extension for Clemson’s course registration that puts
-              professor ratings and grade distributions next to each class. The
-              preview uses sample data.
+              A React Native and Expo app for Samba, the three-deck Canasta
+              variant. Play against an AI opponent that tracks discards, or use
+              table tools for in-person games: score tracker, turn timer, meld
+              calculator, and game history. The rules engine is plain
+              TypeScript with no React dependency and 163 unit tests.
             </p>
-            <a
-              class="text-link"
-              href="https://github.com/Adamruns/iroarpremium"
-              aria-label="iRoar Premium source code on GitHub"
-              >Source code</a
-            >
+            <p class="project-stack">
+              TypeScript, React Native, Expo, Zustand, SQLite
+            </p>
           </article>
-          <article class="project" aria-labelledby="smith-title">
+          <article class="project" aria-labelledby="egg-title">
             <img
-              src="assets/img/projects/smith-shin.webp"
+              src="assets/img/projects/gmc-egg-my-house.webp"
               width="1280"
               height="800"
-              alt="Smith and Shin accounting firm homepage"
+              alt="Egg My House fundraiser site with an order countdown, shown on desktop beside the mobile order form"
               loading="lazy"
             />
-            <h3 id="smith-title">Smith &amp; Shin</h3>
+            <h3 id="egg-title">Egg My House</h3>
             <p>
-              The website for my dad’s accounting firm in South Carolina. I
-              built it and run the domain and hosting.
+              An order site for a high school track team’s Easter fundraiser.
+              Families picked an egg package and delivery method, orders landed
+              in a Google Sheet through Apps Script, and buyers got a styled
+              confirmation email. Orders closed automatically at the deadline.
             </p>
-            <a
-              class="text-link"
-              href="https://smithandshin.com"
-              aria-label="Visit the Smith and Shin website"
+            <p class="project-stack">
+              HTML, CSS, JavaScript, Google Apps Script, Cloudflare
+            </p>
+            <a class="text-link" href="https://gmceggmyhouse.com"
               >Visit the site</a
             >
           </article>
         </div>
-      </section>
-
-      <section
-        id="research"
-        class="resume-section"
-        aria-labelledby="research-title"
-      >
-        <div class="section-rail">
-          <h2 id="research-title">Research</h2>
-          <p>Controlled experiments on AI coding agents, with open data.</p>
-        </div>
-        <ul class="research-list">
-          <li>
-            <h3>
-              <a href="user-confidence.html"
-                >Does your AI need you to be right?</a
-              >
-            </h3>
-            <p>
-              160 attempts testing whether confident, incorrect debugging advice
-              derails a coding agent.
-            </p>
-          </li>
-          <li>
-            <h3>
-              <a href="unit-testing.html"
-                >Do AI agents still need to write tests?</a
-              >
-            </h3>
-            <p>
-              80 bug-fixing attempts measuring whether new regression tests help
-              agents fix bugs and catch future faults.
-            </p>
-          </li>
-        </ul>
       </section>
 
       <section
