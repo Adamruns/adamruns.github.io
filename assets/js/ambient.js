@@ -1,5 +1,4 @@
-/* A four-second entrance, then light ribbons that respond only to scrolling.
-   No endless render loop, controls, rendering library, or network requests. */
+/* Afterglow light ribbons. Autoplays while visible; no control panel. */
 function initAfterglow() {
   const canvas = document.querySelector("#afterglow-canvas");
   const ctx = canvas?.getContext("2d");
@@ -82,19 +81,19 @@ function initAfterglow() {
       return;
     }
     if (now - last >= 32) {
-      elapsed = Math.min(4, elapsed + Math.min(now - last, 65) / 1000);
+      elapsed += Math.min(now - last, 65) / 1000;
       clock = elapsed + scroll * 1.2;
       draw();
       last = now;
     }
-    if (elapsed < 4) frame = requestAnimationFrame(tick);
+    frame = requestAnimationFrame(tick);
   }
   function sync() {
     if (frame) cancelAnimationFrame(frame);
     frame = 0;
     if (!allowed()) return;
-    if (motion.matches || elapsed >= 4) {
-      clock = motion.matches ? 0 : elapsed + scroll * 1.2;
+    if (motion.matches) {
+      clock = 0;
       draw();
     } else {
       last = performance.now();
@@ -118,16 +117,11 @@ function initAfterglow() {
       scrollFrame = requestAnimationFrame(() => {
         scrollFrame = 0;
         scroll = clamp(-intro.getBoundingClientRect().top / innerHeight, -1, 1);
-        if (elapsed >= 4) {
-          clock = elapsed + scroll * 1.2;
-          draw();
-        }
       });
     },
     { passive: true },
   );
   motion.addEventListener("change", () => {
-    elapsed = 4;
     sync();
   });
   new ResizeObserver(resize).observe(canvas);

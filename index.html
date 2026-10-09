@@ -19,7 +19,7 @@
     <meta property="og:url" content="https://adamruns.com/" />
     <meta
       property="og:image"
-      content="https://adamruns.com/assets/img/social-card.png?v=8"
+      content="https://adamruns.com/assets/img/social-card.png?v=9"
     />
     <meta
       property="og:image:alt"
@@ -35,10 +35,10 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="assets/css/style.css?v=8" />
-    <link rel="stylesheet" href="assets/css/afterglow.css?v=8" />
-    <script src="assets/js/ambient.js?v=8" defer></script>
-    <script src="assets/js/main.js?v=8" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=9" />
+    <link rel="stylesheet" href="assets/css/afterglow.css?v=9" />
+    <script src="assets/js/ambient.js?v=9" defer></script>
+    <script src="assets/js/main.js?v=9" defer></script>
   </head>
   <body class="personal-home">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -69,7 +69,7 @@
           <div class="personal-links" aria-label="More about Adam">
             <a href="assets/adam_smith_resume.pdf">Résumé ↗</a>
             <a href="https://github.com/adamruns">GitHub ↗</a>
-            <a href="https://x.com/tokensmax">@tokensmax ↗</a>
+            <a href="https://x.com/tokensmax">X ↗</a>
           </div>
         </div>
         <figure class="intro-photo">
@@ -77,10 +77,9 @@
             src="assets/img/optimized/balloon-portrait.webp"
             width="512"
             height="512"
-            alt="Adam in a hot-air balloon during a trip to Africa"
+            alt="Adam Smith"
             fetchpriority="high"
           />
-          <figcaption>A trip to Africa.</figcaption>
         </figure>
       </section>
       <section
@@ -92,34 +91,19 @@
           <h2 id="projects-title">A few projects</h2>
           <span>Made outside work</span>
         </div>
-        <div class="demo-grid">
-          <article class="demo-project" aria-labelledby="iroar-title">
-            <div class="demo-media">
-              <video
-                controls
-                playsinline
-                preload="none"
-                poster="assets/img/demos/iroar.webp"
-                width="1440"
-                height="900"
-                aria-label="iRoar Premium demo"
-                aria-describedby="iroar-description"
-              >
-                <source src="assets/video/iroar-demo.mp4" type="video/mp4" />
-                <track
-                  kind="captions"
-                  src="assets/video/iroar-demo.vtt"
-                  srclang="en"
-                  label="English"
-                />
-                <p>
-                  <a href="assets/video/iroar-demo.mp4"
-                    >Watch the iRoar Premium demo</a
-                  >.
-                </p>
-              </video>
+        <div class="personal-projects">
+          <article class="personal-project" aria-labelledby="iroar-title">
+            <div class="project-preview">
+              <img
+                class="preview-image"
+                src="assets/img/projects/iroar.webp"
+                width="1280"
+                height="800"
+                alt="iRoar Premium course search with professor ratings and grade distributions; sample data"
+                loading="lazy"
+              />
             </div>
-            <div class="demo-heading">
+            <div class="project-heading">
               <h3 id="iroar-title">iRoar Premium</h3>
               <a
                 href="https://github.com/Adamruns/iroarpremium"
@@ -131,41 +115,20 @@
               A Chrome extension I built for Clemson’s course registration, with
               professor ratings and grade distributions in the same place.
             </p>
-            <p class="demo-caption" id="iroar-description">
-              Demo: search courses, open a class, and compare grades by
-              semester. Recorded locally with sample data. No audio.
-            </p>
+            <p class="preview-note">Preview uses sample data.</p>
           </article>
-          <article class="demo-project" aria-labelledby="smith-title">
-            <div class="demo-media">
-              <video
-                controls
-                playsinline
-                preload="none"
-                poster="assets/img/demos/smith-shin.webp"
+          <article class="personal-project" aria-labelledby="smith-title">
+            <div class="project-preview">
+              <img
+                class="preview-image"
+                src="assets/img/projects/smith-shin.webp"
                 width="1280"
                 height="800"
-                aria-label="Smith and Shin website walkthrough"
-                aria-describedby="smith-description"
-              >
-                <source
-                  src="assets/video/smith-shin-demo.mp4"
-                  type="video/mp4"
-                />
-                <track
-                  kind="captions"
-                  src="assets/video/smith-shin-demo.vtt"
-                  srclang="en"
-                  label="English"
-                />
-                <p>
-                  <a href="assets/video/smith-shin-demo.mp4"
-                    >Watch the Smith &amp; Shin walkthrough</a
-                  >.
-                </p>
-              </video>
+                alt="Smith and Shin accounting firm homepage"
+                loading="lazy"
+              />
             </div>
-            <div class="demo-heading">
+            <div class="project-heading">
               <h3 id="smith-title">Smith &amp; Shin</h3>
               <a
                 href="https://smithandshin.com"
@@ -176,10 +139,6 @@
             <p>
               I built and run the website for my dad’s accounting firm in South
               Carolina, including the domain and hosting.
-            </p>
-            <p class="demo-caption" id="smith-description">
-              Walkthrough: the homepage, services, and tax tips on the public
-              site. No audio.
             </p>
           </article>
         </div>

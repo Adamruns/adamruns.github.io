@@ -47,7 +47,7 @@
 .personal-header nav a,
 .personal-links a,
 .personal-section-heading > a,
-.demo-heading > a,
+.project-heading > a,
 .personal-footer a {
   text-decoration: underline;
   text-decoration-color: transparent;
@@ -59,7 +59,7 @@
 .personal-header nav a:hover,
 .personal-links a:hover,
 .personal-section-heading > a:hover,
-.demo-heading > a:hover,
+.project-heading > a:hover,
 .personal-footer a:hover {
   text-decoration-color: currentColor;
   color: var(--accent);
@@ -82,7 +82,7 @@
   width: 650px;
   max-width: calc(100% + 38px);
   height: 520px;
-  opacity: 0.34;
+  opacity: 0.56;
   mask-image: radial-gradient(ellipse, black 30%, transparent 72%);
 }
 .intro h1 {
@@ -130,12 +130,7 @@
   box-shadow: 0 14px 50px #0004;
   border: 1px solid #ffffff1a;
 }
-.intro-photo figcaption {
-  font-size: 11px;
-  color: var(--muted);
-  text-align: center;
-  padding-top: 12px;
-}
+
 .personal-section {
   padding-block: 38px 46px;
   border-top: 1px solid var(--line);
@@ -157,93 +152,47 @@
   color: var(--muted);
   font-size: 12px;
 }
-.demo-grid {
+.personal-projects {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 }
-.demo-media {
-  position: relative;
+.project-preview {
   border: 1px solid #3e4961;
   border-radius: 12px;
   overflow: hidden;
   background: var(--surface);
+  aspect-ratio: 8/5;
   box-shadow: 0 10px 30px #0002;
 }
-.demo-media video {
-  display: block;
+.preview-image {
   width: 100%;
-  height: auto;
-  aspect-ratio: 8/5;
-  object-fit: contain;
-  color-scheme: dark;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: center 40%;
 }
-.demo-media:focus-within {
-  outline: 2px solid var(--accent);
-  outline-offset: 5px;
-}
-.demo-play {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(transparent 15%, #070b1466);
-  color: white;
-  font-size: 12px;
-}
-.demo-play[hidden] {
-  display: none;
-}
-.demo-play-icon {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  padding-left: 3px;
-  border-radius: 50%;
-  background: #0b1428e8;
-  border: 1px solid #d1e0ff80;
-  font-size: 16px;
-  box-shadow: 0 5px 25px #0003;
-  transition:
-    transform 0.2s,
-    background 0.2s;
-}
-.demo-play > span:last-child {
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: #0b1428ed;
-}
-.demo-play:hover .demo-play-icon {
-  transform: scale(1.08);
-  background: #20304d;
-}
-.demo-heading {
+.project-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
   margin-block: 21px 10px;
 }
-.demo-heading h3 {
+.project-heading h3 {
   font-size: 19px;
   letter-spacing: -0.025em;
 }
-.demo-heading > a {
+.project-heading > a {
   color: var(--accent);
   font-size: 12px;
   flex-shrink: 0;
   padding-block: 5px;
 }
-.demo-project > p {
+.personal-project > p {
   font-size: 14px;
   line-height: 1.85;
 }
-.demo-project > .demo-caption {
+.personal-project > .preview-note {
   font-size: 11px;
   margin-top: 12px;
   color: #a0acc4;
@@ -397,11 +346,6 @@
   .intro-photo img {
     border-radius: 19px;
   }
-  .intro-photo figcaption {
-    font-size: 9px;
-    white-space: nowrap;
-    padding-top: 9px;
-  }
   .personal-links {
     margin-top: 0;
     gap: 24px;
@@ -411,7 +355,7 @@
     top: -65px;
     width: 100%;
     height: 300px;
-    opacity: 0.2;
+    opacity: 0.36;
   }
   .personal-section {
     padding-block: 29px 35px;
@@ -426,14 +370,14 @@
   .personal-section-heading > a {
     font-size: 11px;
   }
-  .demo-grid {
+  .personal-projects {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .demo-heading {
+  .project-heading {
     margin-block: 16px 6px;
   }
-  .demo-project > .demo-caption {
+  .personal-project > .preview-note {
     margin-top: 8px;
   }
   .note-section h2 {
@@ -477,9 +421,6 @@
   .intro .intro-role {
     font-size: 12px;
   }
-  .intro-photo figcaption {
-    font-size: 8px;
-  }
   .personal-links {
     gap: 19px;
     font-size: 12px;
@@ -490,9 +431,6 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .demo-play:hover .demo-play-icon {
-    transform: none;
-  }
   .personal-photos .photo-button:hover img,
   .note-link:hover > span:last-child {
     transform: none;

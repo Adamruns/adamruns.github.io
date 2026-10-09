@@ -110,59 +110,54 @@ function initPhotos() {
   );
 }
 
-// Videos stay idle until the visitor presses play. Only one plays at a time.
-function initDemos() {
-  const videos = [...document.querySelectorAll(".demo-media video")];
-  videos.forEach((video) => {
-    // Keep native controls as the no-JS fallback; use a clear poster button
-    // until playback so browsers do not show an idle loading spinner.
-    const button = document.createElement("button");
-    button.className = "demo-play";
-    button.setAttribute(
-      "aria-label",
-      "Play " + video.getAttribute("aria-label"),
-    );
-    button.innerHTML =
-      '<span class="demo-play-icon" aria-hidden="true">▶</span><span>Play demo <span aria-hidden="true">·</span> 0:15</span>';
-    video.controls = false;
-    video.parentElement.append(button);
-    button.addEventListener("click", async () => {
-      video.controls = true;
-      button.hidden = true;
-      video.focus();
-      try {
-        await video.play();
-      } catch {
-        video.controls = false;
-        button.hidden = false;
-        button.focus();
+function initProjectMotion() {
+  if (!window.IntersectionObserver || !Element.prototype.animate) return;
+  const previews = [...document.querySelectorAll(".preview-image")];
+  const motions = new Map();
+  const visible = new Set();
+  function sync() {
+    motions.forEach((animation, image) => {
+      if (reducedMotion.matches) {
+        animation.cancel();
+      } else if (
+        visible.has(image) &&
+        !document.hidden &&
+        !document.body.classList.contains("modal-open")
+      ) {
+        animation.play();
+      } else {
+        animation.pause();
       }
     });
-    video.addEventListener("play", () => {
-      videos.forEach((other) => {
-        if (other !== video) other.pause();
-      });
-    });
+  }
+  previews.forEach((image, index) => {
+    const animation = image.animate(
+      [
+        { transform: "scale(1.04) translateY(0)" },
+        { transform: "scale(1.08) translateY(-1%)" },
+      ],
+      {
+        duration: 6500 + index * 1500,
+        iterations: Infinity,
+        direction: "alternate",
+        easing: "ease-in-out",
+      },
+    );
+    animation.pause();
+    motions.set(image, animation);
   });
-  const pauseAll = () => videos.forEach((video) => video.pause());
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) pauseAll();
-  });
-  window.addEventListener("modalchange", () => {
-    if (document.body.classList.contains("modal-open")) pauseAll();
-  });
-  if (!window.IntersectionObserver) return;
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(({ target, isIntersecting }) => {
-      if (
-        !isIntersecting &&
-        !document.fullscreenElement &&
-        !target.webkitDisplayingFullscreen
-      )
-        target.pause();
+      if (isIntersecting) visible.add(target);
+      else visible.delete(target);
     });
+    sync();
   });
-  videos.forEach((video) => observer.observe(video));
+  previews.forEach((image) => observer.observe(image));
+  document.addEventListener("visibilitychange", sync);
+  window.addEventListener("modalchange", sync);
+  reducedMotion.addEventListener("change", sync);
+  sync();
 }
 
 function initReveals() {
@@ -192,7 +187,7 @@ function initReveals() {
   );
   document
     .querySelectorAll(
-      ".intro, .demo-project, .note-section, .personal-photos, .gallery-grid .photo-button",
+      ".intro, .personal-project, .note-section, .personal-photos, .gallery-grid .photo-button",
     )
     .forEach((node) => observer.observe(node));
   document.addEventListener("focusin", (event) => {
@@ -207,6 +202,6 @@ function initReveals() {
 }
 
 initPhotos();
-initDemos();
+initProjectMotion();
 initReveals();
 if (typeof initAfterglow === "function") initAfterglow();
